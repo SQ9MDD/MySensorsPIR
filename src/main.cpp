@@ -3,7 +3,7 @@
 #define CHILD_ID_AI1        1             // mysensors first analog input child ID
 #define CHILD_ID_BI1        2             // mysensors binary input child ID
 #define BATTERY_SENSE_PIN   A0            // voltage mesure pin
-#define BI1_INPUT            3            // contactron input
+#define BI1_INPUT           3             // contactron input
 
 // setup radio
 #define MY_RADIO_NRF24
