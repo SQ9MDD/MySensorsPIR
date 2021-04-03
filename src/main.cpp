@@ -15,14 +15,13 @@
 unsigned long SLEEP_TIME = 300000;        // default 5m sleep time between reads and data send (seconds * 1000 milliseconds)
 unsigned int weight = 5;                  // Max 64 min 1, unsigned int = 0-65535 max from adc 1023 *64 = 65472
 unsigned int avg_mesure = 0;
-
 MyMessage msgAI1(CHILD_ID_AI1, V_VOLTAGE);
 MyMessage msgBI1(CHILD_ID_BI1, V_STATUS);
 
 void presentation(){
-    char etykieta[] = "       ";
+    char etykieta[] = "        ";
     int addr = MY_NODE_ID;  
-    sendSketchInfo("MySensorsPIR", "1.1");
+    sendSketchInfo("MySensorsPIR", "1.2");
     sprintf(etykieta,"R%02u.AI1",addr);  present(CHILD_ID_AI1, S_MULTIMETER, etykieta);  
     sprintf(etykieta,"R%02u.BI1",addr);  present(CHILD_ID_BI1, S_BINARY, etykieta);  
 }
@@ -30,14 +29,18 @@ void presentation(){
 void setup(){
     analogReference(INTERNAL);
     pinMode(BATTERY_SENSE_PIN,INPUT);
-    pinMode(BI1_INPUT,INPUT_PULLUP);   
+    #ifdef PIR_SENSOR
+        pinMode(BI1_INPUT,INPUT); 
+    #elif CONTACTRON_SENSOR
+        pinMode(BI1_INPUT,INPUT_PULLUP); 
+    #endif  
     avg_mesure = analogRead(BATTERY_SENSE_PIN);
 }
 
 void loop(){
     // read data
     int sensorValue = analogRead(BATTERY_SENSE_PIN);
-    bool bi1_state = digitalRead(BI1_INPUT) == HIGH;
+    bool bi1_state = digitalRead(BI1_INPUT);
 
     // smoothing readings 
     avg_mesure = (avg_mesure*(weight-1) + sensorValue) / weight;
