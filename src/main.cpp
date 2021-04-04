@@ -7,9 +7,6 @@
 
 // setup radio
 #define MY_RADIO_NRF24                      // type of transceiver
-#define MY_DEBUG                            // Enable debug prints
-#define MY_NODE_ID      43                  // <--- !!! SET NODE ADDRESS HERE !!!
-#define MY_RF24_CHANNEL 80                  // channel from 0 to 125. 76 is default
 #include <MySensors.h>
              
 unsigned long SLEEP_TIME = 300000;          // default 5m sleep time between reads and data send (seconds * 1000 milliseconds)
@@ -22,7 +19,7 @@ MyMessage msgBI1(CHILD_ID_BI1, V_STATUS);   //
 void presentation(){
     char etykieta[] = "        ";
     int addr = MY_NODE_ID;  
-    sendSketchInfo("MySensorsPIR", "1.2");
+    sendSketchInfo("MySensorsPIR", "1.3");
     sprintf(etykieta,"R%02u.AI1",addr);  present(CHILD_ID_AI1, S_MULTIMETER, etykieta);  
     sprintf(etykieta,"R%02u.BI1",addr);  present(CHILD_ID_BI1, S_BINARY, etykieta);  
 }
