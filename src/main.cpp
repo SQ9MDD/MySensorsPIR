@@ -19,7 +19,7 @@ MyMessage msgBI1(CHILD_ID_BI1, V_STATUS);   //
 void presentation(){
     char etykieta[] = "        ";
     int addr = MY_NODE_ID;  
-    sendSketchInfo("MySensorsPIR", "1.3");
+    sendSketchInfo("MySensorsPIR.SJ", "1.3");
     sprintf(etykieta,"R%02u.AI1",addr);  present(CHILD_ID_AI1, S_MULTIMETER, etykieta);  
     sprintf(etykieta,"R%02u.BI1",addr);  present(CHILD_ID_BI1, S_BINARY, etykieta);  
 }
