@@ -1,3 +1,8 @@
+// Copyright (c) 2021 SQ9MDD Rysiek Labus
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 #include <Arduino.h>
 
 #define CHILD_ID_AI1        1               // mysensors first analog input child ID
