@@ -72,5 +72,9 @@ void loop(){
     send(msgBI1.set(bi1_state,1));
 
     // go to sleep
-    sleep(digitalPinToInterrupt(BI1_INPUT), CHANGE, SLEEP_TIME);                                                      
+    if(isTransportReady()){
+        sleep(digitalPinToInterrupt(BI1_INPUT), CHANGE, SLEEP_TIME); 
+    }else{
+        wait(5000);
+    }                                                     
 }
